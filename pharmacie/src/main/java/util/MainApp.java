@@ -9,17 +9,26 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/main.fxml")
-        );
+        // Initialize Database
+        dao.DatabaseInitializer.initialize();
 
-        Scene scene = new Scene(loader.load());
-        stage.setTitle("Gestion de Stock - Pharmacie");
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/fxml/main.fxml"));
+
+        Scene scene = new Scene(loader.load(), 1200, 700);
+
+        // Load CSS
+        scene.getStylesheets().add(
+                getClass().getResource("/css/styles.css").toExternalForm());
+
+        stage.setTitle("Gestion de Pharmacie - Système de Stock");
         stage.setScene(scene);
+        stage.setMinWidth(1000);
+        stage.setMinHeight(600);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

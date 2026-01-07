@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.vente.VenteFormController"
+      spacing="15"
+      styleClass="card">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <Label text="Nouvelle Vente" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    
+    <GridPane hgap="15" vgap="15">
+        <!-- Row 0 -->
+        <Label text="Médicament *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <ComboBox fx:id="cmbMedicament" prefWidth="400" onAction="#handleMedicamentSelection"/>
+            <Label fx:id="lblMedicamentError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 1 -->
+        <Label text="Stock Disponible" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <Label fx:id="lblStockDisponible" text="--" style="-fx-font-size: 14px;"/>
+        
+        <!-- Row 2 -->
+        <Label text="Prix Unitaire" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <Label fx:id="lblPrixUnitaire" text="--" style="-fx-font-size: 14px;"/>
+        
+        <!-- Row 3 -->
+        <Label text="Quantité *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="txtQuantite" promptText="Quantité à vendre" onKeyReleased="#calculateTotal"/>
+            <Label fx:id="lblQuantiteError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 4 -->
+        <Label text="Date Vente *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <DatePicker fx:id="dateVente" prefWidth="300"/>
+        
+        <!-- Row 5 - Total -->
+        <Label text="Total" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <Label fx:id="lblTotal" text="0.00 DH" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
+    </GridPane>
+    
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <padding>
+            <Insets top="10"/>
+        </padding>
+        <Button text="Annuler" styleClass="btn" onAction="#handleCancel"/>
+        <Button fx:id="btnSave" text="💾 Enregistrer Vente" styleClass="btn, btn-success" onAction="#handleSave"/>
+    </HBox>
+    
+</VBox>

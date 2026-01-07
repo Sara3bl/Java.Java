@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.medicament.MedicamentListController"
+      spacing="15"
+      styleClass="card">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="💊 Gestion des Médicaments" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnAdd" text="➕ Nouveau Médicament" styleClass="btn, btn-primary" onAction="#handleAdd"/>
+    </HBox>
+    
+    <!-- Search and Filter Bar -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="txtSearch" promptText="🔍 Rechercher..." styleClass="search-box" prefWidth="300" onKeyReleased="#handleSearch"/>
+        <ComboBox fx:id="cmbCategorie" promptText="Catégorie" prefWidth="150" onAction="#handleFilter"/>
+        <ComboBox fx:id="cmbFournisseur" promptText="Fournisseur" prefWidth="200" onAction="#handleFilter"/>
+        <CheckBox fx:id="chkExpires" text="Expirés uniquement" onAction="#handleFilter"/>
+        <CheckBox fx:id="chkStockFaible" text="Stock faible" onAction="#handleFilter"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="🔄 Actualiser" styleClass="btn" onAction="#loadData"/>
+    </HBox>
+    
+    <!-- Table -->
+    <TableView fx:id="tableMedicaments" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colNom" text="Nom" prefWidth="200"/>
+            <TableColumn fx:id="colCategorie" text="Catégorie" prefWidth="120"/>
+            <TableColumn fx:id="colQuantite" text="Quantité" prefWidth="100"/>
+            <TableColumn fx:id="colPrix" text="Prix (DH)" prefWidth="100"/>
+            <TableColumn fx:id="colExpiration" text="Date Expiration" prefWidth="130"/>
+            <TableColumn fx:id="colFournisseur" text="Fournisseur" prefWidth="150"/>
+            <TableColumn fx:id="colActions" text="Actions" prefWidth="150"/>
+        </columns>
+    </TableView>
+    
+</VBox>

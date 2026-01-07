@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.fournisseur.FournisseurFormController"
+      spacing="15"
+      styleClass="card">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <Label fx:id="lblTitle" text="Nouveau Fournisseur" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    
+    <GridPane hgap="15" vgap="15">
+        <!-- Row 0 -->
+        <Label text="Nom *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <TextField fx:id="txtNom" promptText="Ex: Pharmaceuticals XYZ"/>
+            <Label fx:id="lblNomError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 1 -->
+        <Label text="Email *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="txtEmail" promptText="Ex: contact@xyz.com"/>
+            <Label fx:id="lblEmailError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 2 -->
+        <Label text="Téléphone *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="txtTelephone" promptText="Ex: 0612345678"/>
+            <Label fx:id="lblTelephoneError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 3 -->
+        <Label text="Adresse *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextArea fx:id="txtAdresse" promptText="Adresse complète..." prefRowCount="3"/>
+            <Label fx:id="lblAdresseError" styleClass="error-label" visible="false"/>
+        </VBox>
+    </GridPane>
+    
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <padding>
+            <Insets top="10"/>
+        </padding>
+        <Button text="Annuler" styleClass="btn" onAction="#handleCancel"/>
+        <Button fx:id="btnSave" text="💾 Enregistrer" styleClass="btn, btn-success" onAction="#handleSave"/>
+    </HBox>
+    
+</VBox>

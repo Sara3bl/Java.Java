@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.fournisseur.FournisseurListController"
+      spacing="15"
+      styleClass="card">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="🏢 Gestion des Fournisseurs" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnAdd" text="➕ Nouveau Fournisseur" styleClass="btn, btn-primary" onAction="#handleAdd"/>
+    </HBox>
+    
+    <!-- Search Bar -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="txtSearch" promptText="🔍 Rechercher par nom, email, téléphone..." styleClass="search-box" prefWidth="400" onKeyReleased="#handleSearch"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="🔄 Actualiser" styleClass="btn" onAction="#loadData"/>
+    </HBox>
+    
+    <!-- Table -->
+    <TableView fx:id="tableFournisseurs" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colNom" text="Nom" prefWidth="200"/>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="colTelephone" text="Téléphone" prefWidth="150"/>
+            <TableColumn fx:id="colAdresse" text="Adresse" prefWidth="250"/>
+            <TableColumn fx:id="colActions" text="Actions" prefWidth="150"/>
+        </columns>
+    </TableView>
+    
+</VBox>

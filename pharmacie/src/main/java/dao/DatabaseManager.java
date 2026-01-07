@@ -9,27 +9,31 @@ public class DatabaseManager {
 
     private static Connection connection;
 
-    private DatabaseManager() {}
+    private DatabaseManager() {
+    }
 
     public static Connection getConnection() {
-        if (connection == null) {
-            try {
-                Properties props = new Properties();
-                InputStream in = DatabaseManager.class
-                        .getResourceAsStream("/database.properties");
-                props.load(in);
+        try {
+            if (connection == null || connection.isClosed()) {
+                try {
+                    Properties props = new Properties();
+                    InputStream in = DatabaseManager.class
+                            .getResourceAsStream("/database.properties");
+                    props.load(in);
 
-                connection = DriverManager.getConnection(
-                        props.getProperty("db.url"),
-                        props.getProperty("db.username"),
-                        props.getProperty("db.password")
-                );
+                    connection = DriverManager.getConnection(
+                            props.getProperty("db.url"),
+                            props.getProperty("db.username"),
+                            props.getProperty("db.password"));
 
-                System.out.println("✅ JDBC connection successful");
+                    System.out.println("✅ JDBC connection successful");
 
-            } catch (Exception e) {
-                throw new RuntimeException("❌ JDBC connection failed", e);
+                } catch (Exception e) {
+                    throw new RuntimeException("❌ JDBC connection failed", e);
+                }
             }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
         }
         return connection;
     }

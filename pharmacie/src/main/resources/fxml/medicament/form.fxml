@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.medicament.MedicamentFormController"
+      spacing="15"
+      styleClass="card">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <Label fx:id="lblTitle" text="Nouveau Médicament" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    
+    <GridPane hgap="15" vgap="15">
+        <!-- Row 0 -->
+        <Label text="Nom *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <TextField fx:id="txtNom" promptText="Ex: Paracétamol 500mg"/>
+            <Label fx:id="lblNomError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 1 -->
+        <Label text="Catégorie *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ComboBox fx:id="cmbCategorie" prefWidth="300" editable="true" promptText="Sélectionner ou saisir"/>
+            <Label fx:id="lblCategorieError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 2 -->
+        <Label text="Quantité *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="txtQuantite" promptText="Ex: 100"/>
+            <Label fx:id="lblQuantiteError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 3 -->
+        <Label text="Prix (DH) *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="txtPrix" promptText="Ex: 25.50"/>
+            <Label fx:id="lblPrixError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 4 -->
+        <Label text="Date Expiration *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <DatePicker fx:id="dateExpiration" prefWidth="300"/>
+            <Label fx:id="lblExpirationError" styleClass="error-label" visible="false"/>
+        </VBox>
+        
+        <!-- Row 5 -->
+        <Label text="Fournisseur *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <ComboBox fx:id="cmbFournisseur" prefWidth="300"/>
+            <Label fx:id="lblFournisseurError" styleClass="error-label" visible="false"/>
+        </VBox>
+    </GridPane>
+    
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <padding>
+            <Insets top="10"/>
+        </padding>
+        <Button text="Annuler" styleClass="btn" onAction="#handleCancel"/>
+        <Button fx:id="btnSave" text="💾 Enregistrer" styleClass="btn, btn-success" onAction="#handleSave"/>
+    </HBox>
+    
+</VBox>

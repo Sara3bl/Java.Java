@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.MainController">
+            fx:controller="controller.MainController"
+            fx:id="mainContainer"
+            styleClass="main-container"
+            stylesheets="@../css/styles.css">
+    
+    <!-- Top Navigation Bar -->
+    <top>
+        <VBox styleClass="top-bar">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="🏥 Gestion Pharmacie" styleClass="top-bar"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnDashboard" text="📊 Dashboard" styleClass="nav-button" onAction="#showDashboard"/>
+                <Button fx:id="btnMedicaments" text="💊 Médicaments" styleClass="nav-button" onAction="#showMedicaments"/>
+                <Button fx:id="btnFournisseurs" text="🏢 Fournisseurs" styleClass="nav-button" onAction="#showFournisseurs"/>
+                <Button fx:id="btnVentes" text="💰 Ventes" styleClass="nav-button" onAction="#showVentes"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Center Content Area -->
+    <center>
+        <!-- Content will be loaded here dynamically -->
+    </center>
+    
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <HBox styleClass="status-bar" spacing="20" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="5" right="10" bottom="5" left="10"/>
+            </padding>
+            <Label fx:id="lblStatus" text="✅ Connecté à la base de données" styleClass="status-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblDate" text="07/01/2026" styleClass="status-label"/>
+        </HBox>
+    </bottom>
+    
 </BorderPane>

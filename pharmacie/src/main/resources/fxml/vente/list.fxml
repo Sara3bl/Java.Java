@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.vente.VenteListController"
+      spacing="15"
+      styleClass="card">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="💰 Gestion des Ventes" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnAdd" text="➕ Nouvelle Vente" styleClass="btn, btn-primary" onAction="#handleAdd"/>
+    </HBox>
+    
+    <!-- Filter Bar -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Période:"/>
+        <DatePicker fx:id="dateDebut" promptText="Date début" onAction="#handleFilter"/>
+        <Label text="à"/>
+        <DatePicker fx:id="dateFin" promptText="Date fin" onAction="#handleFilter"/>
+        <TextField fx:id="txtSearch" promptText="🔍 Rechercher médicament..." styleClass="search-box" prefWidth="250" onKeyReleased="#handleSearch"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblTotalVentes" text="Total: 0.00 DH" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #4CAF50;"/>
+        <Button text="🔄 Actualiser" styleClass="btn" onAction="#loadData"/>
+    </HBox>
+    
+    <!-- Table -->
+    <TableView fx:id="tableVentes" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colMedicament" text="Médicament" prefWidth="250"/>
+            <TableColumn fx:id="colQuantite" text="Quantité" prefWidth="100"/>
+            <TableColumn fx:id="colPrixUnitaire" text="Prix Unit. (DH)" prefWidth="120"/>
+            <TableColumn fx:id="colTotal" text="Total (DH)" prefWidth="120"/>
+            <TableColumn fx:id="colDate" text="Date" prefWidth="150"/>
+            <TableColumn fx:id="colActions" text="Actions" prefWidth="120"/>
+        </columns>
+    </TableView>
+    
+</VBox>
