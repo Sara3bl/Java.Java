@@ -20,6 +20,7 @@
                 <Button fx:id="btnMedicaments" text="💊 Médicaments" styleClass="nav-button" onAction="#showMedicaments"/>
                 <Button fx:id="btnFournisseurs" text="🏢 Fournisseurs" styleClass="nav-button" onAction="#showFournisseurs"/>
                 <Button fx:id="btnVentes" text="💰 Ventes" styleClass="nav-button" onAction="#showVentes"/>
+                <Button fx:id="btnCsv" text="📁 CSV" styleClass="nav-button" onAction="#showCsv"/>
             </HBox>
         </VBox>
     </top>

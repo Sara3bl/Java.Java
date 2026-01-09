@@ -25,11 +25,11 @@
         
         <!-- Row 1 -->
         <Label text="Stock Disponible" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <Label fx:id="lblStockDisponible" text="--" style="-fx-font-size: 14px;"/>
+        <Label fx:id="lblStockDisponible" text="--" style="-fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         
         <!-- Row 2 -->
         <Label text="Prix Unitaire" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <Label fx:id="lblPrixUnitaire" text="--" style="-fx-font-size: 14px;"/>
+        <Label fx:id="lblPrixUnitaire" text="--" style="-fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
         
         <!-- Row 3 -->
         <Label text="Quantité *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
@@ -40,11 +40,13 @@
         
         <!-- Row 4 -->
         <Label text="Date Vente *" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <DatePicker fx:id="dateVente" prefWidth="300"/>
+        <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <DatePicker fx:id="dateVente" prefWidth="400"/>
+        </VBox>
         
         <!-- Row 5 - Total -->
         <Label text="Total" styleClass="form-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <Label fx:id="lblTotal" text="0.00 DH" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #4CAF50;"/>
+        <Label fx:id="lblTotal" text="0.00 DH" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
     </GridPane>
     
     <!-- Buttons -->

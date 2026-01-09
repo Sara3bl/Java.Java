@@ -62,4 +62,9 @@ public class MainController implements Initializable {
     private void showVentes() {
         ViewManager.loadView("/fxml/vente/list.fxml");
     }
+
+    @FXML
+    private void showCsv() {
+        ViewManager.loadView("/fxml/csv/manager.fxml");
+    }
 }

@@ -55,25 +55,31 @@
         <padding>
             <Insets top="15" right="15" bottom="15" left="15"/>
         </padding>
-        <Label text="⚠️ Alertes" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-        <ListView fx:id="listAlerts" prefHeight="150"/>
+        <Label text="Alertes" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <ListView fx:id="listAlerts" VBox.vgrow="ALWAYS" 
+                  style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-fixed-cell-size: 40; -fx-min-height: -fx-pref-height; -fx-max-height: -fx-pref-height;"/>
     </VBox>
     
-    <!-- Recent Sales -->
-    <VBox spacing="10" styleClass="card" VBox.vgrow="ALWAYS">
+    <!-- Quick Actions Section -->
+    <VBox spacing="15" styleClass="card">
         <padding>
             <Insets top="15" right="15" bottom="15" left="15"/>
         </padding>
-        <Label text="📊 Ventes Récentes" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-        <TableView fx:id="tableRecentSales" VBox.vgrow="ALWAYS">
-            <columns>
-                <TableColumn fx:id="colSaleMedicament" text="Médicament" prefWidth="200"/>
-                <TableColumn fx:id="colSaleQuantite" text="Quantité" prefWidth="100"/>
-                <TableColumn fx:id="colSalePrix" text="Prix Unitaire" prefWidth="120"/>
-                <TableColumn fx:id="colSaleTotal" text="Total" prefWidth="120"/>
-                <TableColumn fx:id="colSaleDate" text="Date" prefWidth="120"/>
-            </columns>
-        </TableView>
+        <Label text="⚡ Actions Rapides" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="💰 Nouvelle Vente" styleClass="btn, btn-success" prefWidth="200" prefHeight="60" 
+                    style="-fx-font-size: 16px;" onAction="#handleNewSale"/>
+            
+            <Button text="💊 Ajouter Médicament" styleClass="btn, btn-primary" prefWidth="200" prefHeight="60" 
+                    style="-fx-font-size: 16px;" onAction="#handleNewMedicament"/>
+            
+            <Button text="🏢 Nouveau Fournisseur" styleClass="btn, btn-primary" prefWidth="200" prefHeight="60" 
+                    style="-fx-font-size: 16px;" onAction="#handleNewFournisseur"/>
+            
+            <Button text="📥 Exporter CSV" styleClass="btn" prefWidth="200" prefHeight="60" 
+                    style="-fx-font-size: 16px;" onAction="#handleExportCSV"/>
+        </HBox>
     </VBox>
     
 </VBox>

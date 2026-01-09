@@ -6,16 +6,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import model.*;
 import util.AlertUtil;
+import util.ViewManager;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class DashboardController implements Initializable {
 
@@ -29,18 +28,6 @@ public class DashboardController implements Initializable {
     private Label lblVentesJour;
     @FXML
     private ListView<String> listAlerts;
-    @FXML
-    private TableView<VenteWrapper> tableRecentSales;
-    @FXML
-    private TableColumn<VenteWrapper, String> colSaleMedicament;
-    @FXML
-    private TableColumn<VenteWrapper, Integer> colSaleQuantite;
-    @FXML
-    private TableColumn<VenteWrapper, Double> colSalePrix;
-    @FXML
-    private TableColumn<VenteWrapper, Double> colSaleTotal;
-    @FXML
-    private TableColumn<VenteWrapper, LocalDate> colSaleDate;
 
     private final MedicamentDAO medicamentDAO = new MedicamentDAO();
     private final VenteDAO venteDAO = new VenteDAO();
@@ -48,16 +35,7 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setupTableColumns();
         loadDashboardData();
-    }
-
-    private void setupTableColumns() {
-        colSaleMedicament.setCellValueFactory(new PropertyValueFactory<>("medicamentNom"));
-        colSaleQuantite.setCellValueFactory(new PropertyValueFactory<>("quantiteVendue"));
-        colSalePrix.setCellValueFactory(new PropertyValueFactory<>("prixUnitaire"));
-        colSaleTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-        colSaleDate.setCellValueFactory(new PropertyValueFactory<>("dateVente"));
     }
 
     private void loadDashboardData() {
@@ -80,6 +58,7 @@ public class DashboardController implements Initializable {
 
             // Calculate today's sales
             List<Vente> ventes = venteDAO.getAll();
+            
             double ventesJour = ventes.stream()
                     .filter(v -> v.getDateVente().equals(LocalDate.now()))
                     .mapToDouble(Vente::getTotal)
@@ -105,26 +84,29 @@ public class DashboardController implements Initializable {
             }
             listAlerts.setItems(alerts);
 
-            // Load recent sales (last 10)
-            ObservableList<VenteWrapper> recentSales = FXCollections.observableArrayList();
-            List<Vente> last10 = ventes.stream()
-                    .sorted((v1, v2) -> v2.getDateVente().compareTo(v1.getDateVente()))
-                    .limit(10)
-                    .collect(Collectors.toList());
-
-            for (Vente v : last10) {
-                Medicament m = medicamentDAO.getAll().stream()
-                        .filter(med -> med.getId() == v.getMedicamentId())
-                        .findFirst()
-                        .orElse(null);
-                String nomMed = m != null ? m.getNom() : "Inconnu";
-                recentSales.add(new VenteWrapper(v, nomMed));
-            }
-            tableRecentSales.setItems(recentSales);
-
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Erreur", "Impossible de charger les données du tableau de bord");
         }
+    }
+
+    @FXML
+    private void handleNewSale() {
+        ViewManager.loadView("/fxml/vente/form.fxml");
+    }
+
+    @FXML
+    private void handleNewMedicament() {
+        ViewManager.loadView("/fxml/medicament/form.fxml");
+    }
+
+    @FXML
+    private void handleNewFournisseur() {
+        ViewManager.loadView("/fxml/fournisseur/form.fxml");
+    }
+
+    @FXML
+    private void handleExportCSV() {
+        ViewManager.loadView("/fxml/csv/manager.fxml");
     }
 }
